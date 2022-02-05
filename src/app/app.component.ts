@@ -8,13 +8,16 @@ import { ApiService } from './api.service';
 })
 export class AppComponent {
 
-  private fileTmp: any;
+  public fileTmp: any;
+  public urlFile: string = ``;
 
   constructor(private _api: ApiService){
 
   }
 
   onChangeFile(event: any): void {
+    this.urlFile = ``;
+
     const [ file ] = event.target.files;
     this.fileTmp = {
       fileRow: file,
@@ -27,7 +30,10 @@ export class AppComponent {
     const body = new FormData();
     body.append("myFile", this.fileTmp.fileRow, this.fileTmp.fileName);
 
-    this._api.SendApiFile(body).subscribe(res => console.log(res));
+    this._api.SendApiFile(body).subscribe(res => {
+      console.log(res);
+      this.urlFile = res.url;
+    });
 
   }
 
