@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'upload-app';
 
-  onChangeFile(event: any): void {
+  private fileTmp: any;
+
+  constructor(_api: ApiService){
 
   }
 
-  onSend(): void {
-    
+  onChangeFile(event: any): void {
+    const [ file ] = event.target.files;
+    this.fileTmp = {
+      fileRow: file,
+      fileName: file.name
+    }
+  }
+
+  onSendFile(): void {
+
   }
 
 }
