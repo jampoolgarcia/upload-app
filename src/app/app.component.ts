@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'upload-app';
+
+  onChangeFile(event: any): void {
+
+  }
+
+  onSend(): void {
+    
+  }
+
 }
