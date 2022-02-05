@@ -10,7 +10,7 @@ export class AppComponent {
 
   private fileTmp: any;
 
-  constructor(_api: ApiService){
+  constructor(private _api: ApiService){
 
   }
 
@@ -23,6 +23,11 @@ export class AppComponent {
   }
 
   onSendFile(): void {
+
+    const body = new FormData();
+    body.append("myFile", this.fileTmp.fileRow, this.fileTmp.fileName);
+
+    this._api.SendApiFile(body).subscribe(res => console.log(res));
 
   }
 
